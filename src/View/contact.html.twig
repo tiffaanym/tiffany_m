@@ -1,0 +1,43 @@
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/base.css">{% endblock %}
+
+<section id="contact">
+    <div class="container">
+        <h1>Contact</h1>
+        <div class="block"></div>
+
+        {% if error %}
+            <div class="alert alert-danger">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+
+        <form id="formulaire" action="/sendMail" method="POST" name="contact">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="Nom">Nom</label>
+                    <input class="u-full-width form-control" type="text" name="nomMail" id="nomMail" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="Email">Email</label>
+                    <input class="u-full-width form-control" type="email" name="adresseMail" id="adresseMail" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="Message">Message</label>
+                    <textarea class="u-full-width form-control" type="text" name="messageMail"
+                              id="messageMail" required></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <input class="gd u-full-width" id="envoyer" name="submit" type="submit" value="Envoyer"/>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>

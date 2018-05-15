@@ -1,0 +1,47 @@
+/* Footer Section
+********************************************************************* */
+footer {
+    min-height: 120px;
+    padding: 90px 0 90px 0;
+    background: #009e87;
+    background: -moz-linear-gradient(-45deg, #009e87 0%, #5fc3e4 100%);
+    background: -webkit-linear-gradient(-45deg, #009e87 0%, #5fc3e4 100%);
+    background: linear-gradient(135deg, #009e87 0%, #5fc3e4 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e55d87', endColorstr='#5fc3e4', GradientType=1);
+    box-sizing: border-box;
+}
+
+/*Footer element*/
+
+footer {
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+footer h4 {
+    color: white;
+    margin-bottom: 40px;
+}
+
+footer a {
+    color: white;
+    transition: color 0.3s linear;
+    margin-right: 20px;
+}
+
+footer a:hover {
+    color: deeppink;
+}
+
+footer ul, footer small {
+    display: inline;
+}
+
+footer p {
+    color: white;
+    font-size: 0.7em;
+}
+
+.list-inline > li {
+    margin-top: 20px;
+}

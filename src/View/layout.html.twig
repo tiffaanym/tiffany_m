@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Armata|Open+Sans" rel="stylesheet">
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    {% block stylesheet %}{% endblock %}
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+</head>
+
+
+<body>
+
+<header id="header">
+    <div class="main_nav">
+        <div class="container">
+            <div class="mobile-toggle"><span></span> <span></span> <span></span></div>
+            <nav>
+                <ul>
+                    <li><a class="smoothscroll" href="#header">Accueil</a></li>
+                    <li><a class="smoothscroll" href="#about">A propos</a></li>
+                    <li><a class="smoothscroll" href="#skills">Compétences</a></li>
+                    <li><a class="smoothscroll" href="#portfolio">Portfolio</a></li>
+                    <li><a class="smoothscroll" href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+    <div class="title">
+        <div><img class="logo" src="http://res.cloudinary.com/tiffanym/image/upload/q_100/v1525284540/tm_umvftt.png">
+        </div>
+        <div class="smallsep heading"></div>
+        <h1 class="heading">TIFFANY MAURATH</h1>
+        <h2 class="heading"><span id="holder"></span><span>|</span></h2>
+        <a class="smoothscroll" href="#about">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </a></div>
+    <a class="smoothscroll" href="#about">
+        <div class="scroll-down"></div>
+    </a>
+</header>
+
+{% include 'about.html.twig' %}
+
+{% include 'skills.html.twig' %}
+
+{%  include 'portfolio.html.twig' %}
+
+{% include 'contact.html.twig' %}
+
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12"></div>
+            <h4>CONTACT</h4>
+            <ul class="list-inline center-block">
+                <li>
+                    <a href="mailto:tiffany.maurath@orange.fr" target="_blank"><i class="fa fa-envelope fa-2x"></i></a>
+                </li>
+                <li>
+                    <a href="https://github.com/tiffaanym" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                </li>
+                <li>
+                    <a href="https://codepen.io/tiffanym/#" target="_blank"><i class="fab fa-codepen fa-2x"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/tiffany-maurath-9728aa15b/" target="_blank"><i
+                                class="fab fa-linkedin fa-2x"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    /*----------------------------------------------------*/
+    /* Quote Loop
+    ------------------------------------------------------ */
+
+    function fade($ele) {
+        $ele.fadeIn(1000).delay(3000).fadeOut(1000, function () {
+            var $next = $(this).next('.quote');
+            fade($next.length > 0 ? $next : $(this).parent().children().first());
+        });
+    }
+
+    fade($('.quoteLoop > .quote').first());
+
+
+    /*----------------------------------------------------*/
+    /* Typing Animation
+    ------------------------------------------------------ */
+
+    $(document).ready(function () {
+
+        // typing animation
+        (function ($) {
+            $.fn.writeText = function (content) {
+                var contentArray = content.split(""),
+                    current = 0,
+                    elem = this;
+                setInterval(function () {
+                    if (current < contentArray.length) {
+                        elem.text(elem.text() + contentArray[current++]);
+                    }
+                }, 80);
+            };
+
+        })(jQuery);
+
+        // input text for typing animation
+        $("#holder").writeText("WEB DESIGNER + FRONT-END DEVELOPER");
+
+    });
+
+
+    /*----------------------------------------------------*/
+    /* Navigation
+    ------------------------------------------------------ */
+
+    $(window).scroll(function () {
+
+        if ($(window).scrollTop() > 300) {
+            $('.main_nav').addClass('sticky');
+        } else {
+            $('.main_nav').removeClass('sticky');
+        }
+    });
+
+    // Mobile Navigation
+    $('.mobile-toggle').click(function () {
+        if ($('.main_nav').hasClass('open-nav')) {
+            $('.main_nav').removeClass('open-nav');
+        } else {
+            $('.main_nav').addClass('open-nav');
+        }
+    });
+
+    $('.main_nav li a').click(function () {
+        if ($('.main_nav').hasClass('open-nav')) {
+            $('.navigation').removeClass('open-nav');
+            $('.main_nav').removeClass('open-nav');
+        }
+    });
+
+
+    /*----------------------------------------------------*/
+    /* Smooth Scrolling
+    ------------------------------------------------------ */
+
+    jQuery(document).ready(function ($) {
+
+        $('.smoothscroll').on('click', function (e) {
+            e.preventDefault();
+
+            var target = this.hash,
+                $target = $(target);
+
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top
+            }, 800, 'swing', function () {
+                window.location.hash = target;
+            });
+        });
+
+    });
+
+
+    TweenMax.staggerFrom(".heading", 0.8, {opacity: 0, y: 20, delay: 0.2}, 0.4);
+
+    /*----------------------------------------------------*/
+    /* Gradient Button
+    ------------------------------------------------------ */
+
+    $(() => {
+        var $sendBtn = $('.send-button'),
+            $iWrapper = $('.icon-wrapper'),
+            $i1 = $('.icon-1'),
+            $i2 = $('.icon-2');
+
+        function animationEvent() {
+            var t,
+                el = document.createElement('fakeelement');
+
+            var animations = {
+                animation: 'animationend',
+                OAnimation: 'oAnimationEnd',
+                MozAnimation: 'animationend',
+                WebkitAnimation: 'webkitAnimationEnd'
+            };
+
+            for (t in animations) {
+                if (el.style[t] !== undefined) {
+                    return animations[t];
+                }
+            }
+        }
+
+        $sendBtn.on('click', e => {
+            $iWrapper.css('color', '#66bb6a');
+            $iWrapper.addClass('icon-wrapper-animation');
+            $sendBtn.addClass('clicked');
+            $i1.delay(900);
+            $i1.fadeTo(300, 0);
+            $i2.delay(900);
+            $i2.fadeTo(300, 1);
+        });
+
+        $sendBtn.on(animationEvent(), e => {
+            if (e.originalEvent.animationName == 'input-shadow') {
+                $sendBtn.removeClass('clicked');
+            }
+        });
+
+        $iWrapper.on(animationEvent(), e => {
+            if (e.originalEvent.animationName == 'icon-animation') {
+                $iWrapper.removeClass('icon-wrapper-animation');
+                setTimeout(reset, 1200);
+            }
+        });
+
+        function reset() {
+            $i1.fadeTo(250, 1);
+            $i2.fadeTo(250, 0);
+            $iWrapper.css('color', '#f8bbd0');
+        }
+    }); // end of document ready
+
+
+
+
+    /*----------------------------------------------------*/
+    /* Portfolio
+    ------------------------------------------------------ */
+
+    $('.gallery-item').hover(function () {
+        $(this).find('p').stop().animate({
+            opacity: '1',
+            marginLeft: '220px'
+        }, 300);
+    }, function () {
+        $(this).find('p').stop().animate({
+            opacity: '0',
+            marginLeft: '0px'
+        }, 100);
+    });
+
+
+
+</script>
+</body>
+</html>
