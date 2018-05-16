@@ -45,7 +45,7 @@ class PortfolioController extends AbstractController
                 $mail->Host = 'smtp.orange.fr';                                 // Specify main and backup SMTP servers
                 $mail->SMTPAuth = true;                                         // Enable SMTP authentication
                 $mail->Username = 'tiffany.maurath@orange.fr';                  // SMTP username
-                $mail->Password = 'schumi';                                    // SMTP password
+                $mail->Password = 'devine';                                    // SMTP password
                 $mail->SMTPSecure = 'ssl';                                      // Enable TLS encryption, `ssl` also accepted
                 $mail->Port = 465;                                              // TCP port to connect to
 
